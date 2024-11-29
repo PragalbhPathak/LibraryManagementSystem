@@ -72,37 +72,6 @@ public class FineService implements FineServiceImpl {
         }
     }
 
-//    @Transactional
-//    public BaseApiResponse updateFine(FineRequest fineRequest) {
-//        Fine fine = new Fine();
-//
-//        try {
-//            Optional<Fine> existingFine = fineRepository.findById(fineRequest.getFineId());
-//
-//            if (existingFine.isPresent()) {
-//                fine = existingFine.get();
-//                fine.setTransactionId(fineRequest.getTransactionId());
-//                fine.setAmount(fineRequest.getAmount());
-//                fine.setPaid(fineRequest.isPaid());
-//
-//                fine = fineRepository.save(fine);
-//            } else {
-//                fine.setFineId(fineRequest.getFineId());
-//                fine.setTransactionId(fineRequest.getTransactionId());
-//                fine.setAmount(fineRequest.getAmount());
-//                fine.setPaid(fineRequest.isPaid());
-//
-//                fine = fineRepository.save(fine);
-//            }
-//
-//            FineResponse fineResponse = mapToFineResponse(fine);
-//
-//            return new BaseApiResponse(SUCCESS_OK, SUCCESS, MESSAGE_SAVE, fineResponse);
-//        } catch (Exception e) {
-//            return new BaseApiResponse(INTERNAL_SERVER_ERROR, FAILURE, MESSAGE_COMMON_SERVER_ERROR, Collections.emptyList());
-//        }
-//    }
-
     // Helper method to map User to UserResponseDto
     private FineResponse mapToFineResponse(Fine fine) {
         FineResponse fineResponse = new FineResponse();
@@ -147,3 +116,36 @@ public class FineService implements FineServiceImpl {
         }
     }
 }
+
+//---------------------------------------------------------------------------------------------------------------------------
+
+//    @Transactional
+//    public BaseApiResponse updateFine(FineRequest fineRequest) {
+//        Fine fine = new Fine();
+//
+//        try {
+//            Optional<Fine> existingFine = fineRepository.findById(fineRequest.getFineId());
+//
+//            if (existingFine.isPresent()) {
+//                fine = existingFine.get();
+//                fine.setTransactionId(fineRequest.getTransactionId());
+//                fine.setAmount(fineRequest.getAmount());
+//                fine.setPaid(fineRequest.isPaid());
+//
+//                fine = fineRepository.save(fine);
+//            } else {
+//                fine.setFineId(fineRequest.getFineId());
+//                fine.setTransactionId(fineRequest.getTransactionId());
+//                fine.setAmount(fineRequest.getAmount());
+//                fine.setPaid(fineRequest.isPaid());
+//
+//                fine = fineRepository.save(fine);
+//            }
+//
+//            FineResponse fineResponse = mapToFineResponse(fine);
+//
+//            return new BaseApiResponse(SUCCESS_OK, SUCCESS, MESSAGE_SAVE, fineResponse);
+//        } catch (Exception e) {
+//            return new BaseApiResponse(INTERNAL_SERVER_ERROR, FAILURE, MESSAGE_COMMON_SERVER_ERROR, Collections.emptyList());
+//        }
+//    }

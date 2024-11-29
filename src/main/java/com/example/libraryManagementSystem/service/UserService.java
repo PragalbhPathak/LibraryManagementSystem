@@ -43,7 +43,6 @@ public class UserService implements UserServiceImpl {
             if (userRequest.getUserId() != null && userRequest.getUserId() <= 0) {
                 return new BaseApiResponse(BAD_REQUEST, FAILURE, "Invalid User ID", Collections.emptyList());
             }
-
             // Validate other fields
             if (userRequest.getName() == null || userRequest.getName().isEmpty()) {
                 return new BaseApiResponse(BAD_REQUEST, FAILURE, "Name is required", Collections.emptyList());
@@ -178,7 +177,6 @@ public class UserService implements UserServiceImpl {
         if (!isValidEmail(email)) {
             return new BaseApiResponse(BAD_REQUEST, FAILURE, "Invalid email format", Collections.emptyList());
         }
-
         // Check if email or password is blank (contains only spaces)
         if (email.trim().isEmpty() || password.trim().isEmpty()) {
             return new BaseApiResponse(BAD_REQUEST, FAILURE, "Email and password cannot be empty or just spaces", Collections.emptyList());
@@ -186,18 +184,14 @@ public class UserService implements UserServiceImpl {
 
         // Fetching user from repository based on email
         Optional<User> userOptional = userRepository.findByEmail(email);
-
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-
             // Checking if password matches
             if (passwordEncoder.matches(password, user.getPassword())) {
-
                 // Check if the requested role matches the user's role (case-insensitive)
                 if (user.getRole().equalsIgnoreCase(requestedRole)) {
                     // If roles match, generate the JWT token
                     String token = jwtService.generateToken(user.getEmail(), user.getRole());
-
                     // Returning success response with token
                     return new BaseApiResponse(SUCCESS_OK, SUCCESS, "Login successful", token);
                 } else {
@@ -211,13 +205,15 @@ public class UserService implements UserServiceImpl {
             return new BaseApiResponse(NOT_FOUND, FAILURE, "User not found", Collections.emptyList());
         }
     }
-
     // Helper method for email format validation using regex
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email != null && email.matches(emailRegex);
     }
 
+}
+
+//-------------------------------------------------------------------------------------------------------------------------
 
 //    @Override
 //    public BaseApiResponse userLogin(AuthRequest authRequest) {
@@ -254,7 +250,6 @@ public class UserService implements UserServiceImpl {
 //        }
 //    }
 
-}
 
 //    public BaseApiResponse createUser(UserRequest userRequest) {
 //        User user = new User();

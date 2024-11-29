@@ -50,7 +50,6 @@ public class TransactionService implements TransactionServiceImpl {
             if (transactionRequest.getDueDate().isBefore(transactionRequest.getBorrowDate().plusDays(14))) {
                 return new BaseApiResponse(BAD_REQUEST, FAILURE, "Due date should be at least 14 days after borrow date", Collections.emptyList());
             }
-
             // Process existing transaction or create a new one
             if (existingTransaction.isPresent()) {
                 transaction = existingTransaction.get();
