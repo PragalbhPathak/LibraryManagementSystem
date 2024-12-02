@@ -6,25 +6,20 @@ import com.example.libraryManagementSystem.dto.requestDto.Checksum;
 import com.example.libraryManagementSystem.dto.requestDto.SearchRequest;
 import com.example.libraryManagementSystem.dto.requestDto.UserRequest;
 import com.example.libraryManagementSystem.dto.responseDto.BaseApiResponse;
-import com.example.libraryManagementSystem.entity.User;
 import com.example.libraryManagementSystem.implementation.UserServiceImpl;
 import com.example.libraryManagementSystem.encryption.ChecksumEncryption;
-import com.example.libraryManagementSystem.repository.UserRepository;
-import com.example.libraryManagementSystem.service.JwtService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
 import static com.example.libraryManagementSystem.constraint.REST_MAPPING_CONSTRAINT.BASE_URL;
@@ -94,7 +89,7 @@ public class UserController {
         }
     }
     //-----------------------------------------------------------------------------------------------------------------------------------------
-    //LOGIN USER
+                                                                //LOGIN USER
     //-----------------------------------------------------------------------------------------------------------------------------------------
 
     // Endpoint for user login
@@ -120,7 +115,7 @@ public class UserController {
     }
 
 }
-
+//----------------------------------------------------------------------------------------------------------------------------------------
 //    @PreAuthorize("hasRole('Librarian')")
 //    @PostMapping(REST_MAPPING_CONSTRAINT.DEFINED_API.GET_USER)
 //    public ResponseEntity<BaseApiResponse> getUserById(@RequestBody SearchRequest searchRequest) {
