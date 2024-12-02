@@ -147,8 +147,8 @@ public class UserService implements UserServiceImpl {
     public BaseApiResponse getUserByUserId(Long userId, boolean findAll) {
         try {
             if (findAll) {
-                // Fetch all users with pagination (limit 5)
-                Pageable pageable = PageRequest.of(0, 8);  // Limit to 10 records per page
+                // Fetch all users with pagination (limit 8)
+                Pageable pageable = PageRequest.of(0, 8);  // Limit to 8 records per page
                 return getAllUsers(pageable);
             } else {
                 // Fetch a specific user by userId
